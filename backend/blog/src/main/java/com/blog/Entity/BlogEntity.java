@@ -1,4 +1,4 @@
-package com.codehex.blog.Entity;
+package com.blog.Entity;
 
 import jakarta.persistence.*;
 

@@ -1,7 +1,7 @@
-package com.codehex.blog.Service;
+package com.blog.Service;
 
-import com.codehex.blog.Entity.BlogEntity;
-import com.codehex.blog.Repository.BlogRepository;
+import com.blog.Entity.BlogEntity;
+import com.blog.Repository.BlogRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +33,8 @@ public class BlogService {
      * @param blogEntity A entidade da postagem a ser criada.
      * @return A entidade da postagem criada.
      */
-    public BlogEntity createPost(BlogEntity blogEntity) {
+    public BlogEntity createArticle(BlogEntity blogEntity) {
+
         return blogRepository.save(blogEntity);
     }
 
@@ -42,7 +43,7 @@ public class BlogService {
      *
      * @return Uma lista de entidades de postagens de blog.
      */
-    public List<BlogEntity> getPosts() {
+    public List<BlogEntity> getArticleAll() {
         return blogRepository.findAll();
     }
 
@@ -53,7 +54,8 @@ public class BlogService {
      * @return A entidade da postagem correspondente ou null não encontre.
      */
 
-    public BlogEntity getPostById(Long id) {
+    public BlogEntity getArticleById(Long id) {
+
         return blogRepository.findById(id).orElse(null);
     }
 
@@ -64,7 +66,7 @@ public class BlogService {
      * @param blogEntity A entidade da postagem contendo os novos dados.
      * @return A enteidade da postaggem atualizada  ou null se não encontrada.
      */
-    public BlogEntity updatePost(Long id, BlogEntity blogEntity) {
+    public BlogEntity updatedArticle(Long id, BlogEntity blogEntity) {
         Optional<BlogEntity> optionalBlogEntity = blogRepository.findById(id);
         if (optionalBlogEntity.isPresent()) {
             BlogEntity existingBlog = optionalBlogEntity.get();
@@ -77,13 +79,18 @@ public class BlogService {
         return null;
     }
 
+    // Get a Blog Post by Category
+    public  List<BlogEntity> getArticleByCategory(String category){
+        return  blogRepository.findByCategory(category);
+    }
+
     /**
      * Deleta uma postagem de Blog existente pelo identificador.
      *
      * @param id O Identificador da postagem a ser deletado.
      * @return true se a postagem foi deletada com sucesso, false caso contrário.
      */
-    public boolean deletePost(Long id) {
+    public boolean deleteArticle(Long id) {
         if (blogRepository.existsById(id)) {
             blogRepository.deleteById(id);
             return true;

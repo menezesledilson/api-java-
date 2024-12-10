@@ -1,8 +1,10 @@
-package com.codehex.blog.Repository;
+package com.blog.Repository;
 
-import com.codehex.blog.Entity.BlogEntity;
+import com.blog.Entity.BlogEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * Este repository gerencia as operações de acesso ao banco de dados para a entidade Blog.
@@ -15,5 +17,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface BlogRepository extends JpaRepository<BlogEntity, Long> {
+List<BlogEntity>findByCategory(String category);
 
 }
