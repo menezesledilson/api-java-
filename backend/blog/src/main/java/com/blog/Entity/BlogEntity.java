@@ -52,6 +52,8 @@ public class BlogEntity {
     @Column(name = "data_criacao")
     private LocalDateTime dateCreatetion;
 
+    private String category;
+
     /**
      * Antes de o post ser salvo no banco de dados, este método define automaticamente
      * a data de criação para o momento atual.
